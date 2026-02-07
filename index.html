@@ -4,76 +4,52 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>버스기사 CCTV 뷰어</title>
-
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      background: black;
+      background: #000;
       overflow: hidden;
     }
 
-    /* 전체 레이아웃 */
     .container {
       display: flex;
       flex-direction: column;
       height: 100%;
     }
 
-    /* 각 영상 창 */
-    .frame {
+    iframe {
       flex: 1;
-      position: relative;
-      overflow: hidden;   /* 여기서 자르기 */
-      background: black;
-    }
-
-    /* 실제 CCTV */
-    .frame iframe {
       width: 100%;
-      height: 100%;
       border: none;
       background: black;
 
-      transform-origin: center;
+      /* 화면 확대 */
+      transform: scale(1.2); /* 1.2배로 확대, 필요에 따라 조정 */
+      transform-origin: top; /* 상단 기준 확대 */
+      /* 상단/하단 UI 잘라내기 */
+      margin-top: -50px; /* 상단 UI 제거용, 영상 위치 조정 */
+      margin-bottom: -50px; /* 하단 UI 제거용, 영상 위치 조정 */
+
+      /* 운전 중 터치 방지 */
       pointer-events: none;
-    }
-
-    /* ===== 여기서 튜닝 ===== */
-
-    /* 위: 광암터널 2 */
-    .frame.top iframe {
-      transform: scale(1);
-      /* 필요하면 translateX(-5%) 추가 */
-    }
-
-    /* 아래: 광암터널 3 */
-    .frame.bottom iframe {
-      transform: scale(1);
     }
   </style>
 </head>
-
 <body>
 
-  <div class="container">
+<div class="container">
+  <!-- 상단: 광암터널 2 -->
+  <iframe 
+    src="https://www.utic.go.kr/jsp/map/cctvStream.jsp?cctvid=E912356&cctvname=%255B%25EC%2588%2598%25EB%258F%2584%25EA%25B6%258C%25EC%25A0%259C1%25EC%2588%259C%25ED%2599%2598%25EC%2584%25A0%255D%25EA%25B4%2591%25EC%2595%2594%25ED%2584%25B0%25EB%2584%25902&kind=Z3&cctvip=6&id=6/09%2B5Gp/UhiOV6m6mvvG5QZjlFqzqSLQygmaAval9KTOWDAPm5bBV5geyv5VZ7vou5M7t3YulKHYqDfgMGGOt4g==">
+  </iframe>
 
-    <!-- 위 CCTV -->
-    <div class="frame top">
-      <iframe
-        src="https://www.utic.go.kr/jsp/map/cctvStream.jsp?cctvid=E912356&cctvname=%255B%25EC%2588%2598%25EB%258F%2584%25EA%25B6%258C%25EC%25A0%259C1%25EC%2588%259C%25ED%2599%2598%25EC%2584%25A0%255D%25EA%25B4%2591%25EC%2595%2594%25ED%2584%25B0%25EB%2584%25902&kind=Z3">
-      </iframe>
-    </div>
-
-    <!-- 아래 CCTV -->
-    <div class="frame bottom">
-      <iframe
-        src="https://www.utic.go.kr/jsp/map/cctvStream.jsp?cctvid=E912357&cctvname=%255B%25EC%2588%2598%25EB%258F%2584%25EA%25B6%258C%25EC%25A0%259C1%25EC%2588%259C%25ED%2599%2598%25EC%2584%25A0%255D%25EA%25B4%2591%25EC%2595%2594%25ED%2584%25B0%25EB%2584%25903&kind=Z3">
-      </iframe>
-    </div>
-
-  </div>
+  <!-- 하단: 광암터널 3 -->
+  <iframe 
+    src="https://www.utic.go.kr/jsp/map/cctvStream.jsp?cctvid=E912357&cctvname=%255B%25EC%2588%2598%25EB%258F%2584%25EA%25B6%258C%25EC%25A0%259C1%25EC%2588%259C%25ED%2599%2598%25EC%2584%25A0%255D%25EA%25B4%2591%25EC%2595%2594%25ED%2584%25B0%25EB%2584%25903&kind=Z3&cctvip=7&id=7/u5pPEGa80JWouoyCuReWLVQ5UTJjBpkB4zW4coUH4gex1Ecxnk9WUY1VyyIeNPB/6rnqT4CcGG9u6RdDVt7HkQ==">
+  </iframe>
+</div>
 
 </body>
 </html>
