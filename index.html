@@ -1,55 +1,59 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>버스기사 CCTV 뷰어</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      background: #000;
-      overflow: hidden;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>버스기사 CCTV 뷰어</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #000;
+    overflow: hidden;
+  }
 
-    .container {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
+  .container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
 
-    iframe {
-      flex: 1;
-      width: 100%;
-      border: none;
-      background: black;
+  iframe {
+    flex: 1;
+    width: 100%;
+    border: none;
+    background: black;
 
-      /* 화면 확대 */
-      transform: scale(1.2); /* 1.2배로 확대, 필요에 따라 조정 */
-      transform-origin: top; /* 상단 기준 확대 */
-      /* 상단/하단 UI 잘라내기 */
-      margin-top: -50px; /* 상단 UI 제거용, 영상 위치 조정 */
-      margin-bottom: -50px; /* 하단 UI 제거용, 영상 위치 조정 */
+    /* 화면 확대 */
+    transform: scale(2); /* 확대 비율 */
+    transform-origin: top; /* 상단 기준 확대 */
 
-      /* 운전 중 터치 방지 */
-      pointer-events: none;
-    }
-  </style>
+    /* 상하 잘림 */
+    margin-top: -60px;   /* 위쪽 잘림 */
+    margin-bottom: -60px; /* 아래쪽 잘림 */
+  }
+
+  /* 바텀 iframe만 조금 다르게 조정 가능 */
+  iframe.bottom {
+    transform-origin: bottom; /* 아래 기준 확대 */
+    margin-top: -40px;
+    margin-bottom: -40px;
+  }
+</style>
 </head>
-<body>
 
+<body>
 <div class="container">
   <!-- 상단: 광암터널 2 -->
   <iframe 
-    src="https://www.utic.go.kr/jsp/map/cctvStream.jsp?cctvid=E912356&cctvname=%255B%25EC%2588%2598%25EB%258F%2584%25EA%25B6%258C%25EC%25A0%259C1%25EC%2588%259C%25ED%2599%2598%25EC%2584%25A0%255D%25EA%25B4%2591%25EC%2595%2594%25ED%2584%25B0%25EB%2584%25902&kind=Z3&cctvip=6&id=6/09%2B5Gp/UhiOV6m6mvvG5QZjlFqzqSLQygmaAval9KTOWDAPm5bBV5geyv5VZ7vou5M7t3YulKHYqDfgMGGOt4g==">
+    src="https://www.utic.go.kr/jsp/map/cctvStream.jsp?cctvid=E912356&kind=Z3&cctvip=6&id=6/09%2B5Gp/UhiOV6m6mvvG5QZjlFqzqSLQygmaAval9KTOWDAPm5bBV5geyv5VZ7vou5M7t3YulKHYqDfgMGGOt4g==">
   </iframe>
 
   <!-- 하단: 광암터널 3 -->
-  <iframe 
-    src="https://www.utic.go.kr/jsp/map/cctvStream.jsp?cctvid=E912357&cctvname=%255B%25EC%2588%2598%25EB%258F%2584%25EA%25B6%258C%25EC%25A0%259C1%25EC%2588%259C%25ED%2599%2598%25EC%2584%25A0%255D%25EA%25B4%2591%25EC%2595%2594%25ED%2584%25B0%25EB%2584%25903&kind=Z3&cctvip=7&id=7/u5pPEGa80JWouoyCuReWLVQ5UTJjBpkB4zW4coUH4gex1Ecxnk9WUY1VyyIeNPB/6rnqT4CcGG9u6RdDVt7HkQ==">
+  <iframe class="bottom"
+    src="https://www.utic.go.kr/jsp/map/cctvStream.jsp?cctvid=E912357&kind=Z3&cctvip=7&id=7/u5pPEGa80JWouoyCuReWLVQ5UTJjBpkB4zW4coUH4gex1Ecxnk9WUY1VyyIeNPB/6rnqT4CcGG9u6RdDVt7HkQ==">
   </iframe>
 </div>
-
 </body>
 </html>
